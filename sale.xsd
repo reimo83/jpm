@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="currency">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="productType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-zA-Z]{1,31}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="itemPrice">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{1,4}\.[0-9]{2}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="operationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="add"/>
+      <xs:enumeration value="subtract"/>
+      <xs:enumeration value="multiply"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="sale">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="items" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="item" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="productType" type="productType" />
+                  <xs:attribute name="price" type="itemPrice" />
+                  <xs:attribute name="quantity" type="xs:int" />
+                  <xs:attribute name="currency" type="currency" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="operations" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="operation" minOccurs="1"  maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="type" type="operationType" />
+                  <xs:attribute name="price" type="itemPrice" />
+                  <xs:attribute name="currency" type="currency" />
+                  <xs:attribute name="productType" type="productType" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

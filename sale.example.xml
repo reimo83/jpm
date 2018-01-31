@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sale>
+  <items>
+    <item productType="apple" price="0.10" currency="GBP" quantity="1"/>
+    <item productType="raspberry" price="0.15" currency="GBP" quantity="1"/>
+  </items>
+  <operations>
+    <operation type="add" productType="apple" price="2.00" currency="GBP"/>
+  </operations>
+</sale>
